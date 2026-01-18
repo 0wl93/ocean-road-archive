@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 type FilterCategory = 'All' | 'Technology' | 'Design' | 'AI' | 'Culture' | 'Engineering';
 
 interface Post {
-  id: number;
+  id: string;
   title: string;
   url: string;
-  category: FilterCategory;
+  category: string;
   source: string;
   date: string;
 }
@@ -18,27 +18,33 @@ export default function Archive() {
   const [selectedCategory, setSelectedCategory] = useState<FilterCategory>('All');
   const [isFiltersOpen, setIsFiltersOpen] = useState(true);
   const [isSourcesOpen, setIsSourcesOpen] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Sample posts data - you can replace this with actual data
-  const posts: Post[] = [
-    {
-      id: 1,
-      title: 'Example Technology Post',
-      url: 'https://example.com',
-      category: 'Technology',
-      source: 'Example Source',
-      date: '2024-01-15'
-    },
-    {
-      id: 2,
-      title: 'Example Design Post',
-      url: 'https://example.com',
-      category: 'Design',
-      source: 'Example Source',
-      date: '2024-01-14'
-    },
-    // Add more sample posts as needed
-  ];
+  // Fetch posts from Airtable via API
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/posts');
+        const data = await response.json();
+
+        if (data.error) {
+          setError(data.error);
+        }
+
+        setPosts(data.posts || []);
+      } catch (err) {
+        console.error('Error fetching posts:', err);
+        setError('Failed to load posts');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPosts();
+  }, []);
 
   const categories: FilterCategory[] = ['All', 'Technology', 'Design', 'AI', 'Culture', 'Engineering'];
 
@@ -131,7 +137,16 @@ export default function Archive() {
 
           {/* Main Content */}
           <main className="flex-1">
-            {filteredPosts.length === 0 ? (
+            {loading ? (
+              <div className="text-center py-12 sm:py-16 text-gray-500">
+                Loading posts...
+              </div>
+            ) : error ? (
+              <div className="text-center py-12 sm:py-16">
+                <p className="text-red-600 mb-2">{error}</p>
+                <p className="text-sm text-gray-500">Check the AIRTABLE_SETUP.md file for configuration instructions</p>
+              </div>
+            ) : filteredPosts.length === 0 ? (
               <div className="text-center py-12 sm:py-16 text-gray-500">
                 No posts found
               </div>

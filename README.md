@@ -10,6 +10,7 @@ An exact functional replica of the Ocean Road Archive inspiration collection web
 - **Sources Dropdown** for filtering by content source
 - **Responsive Design** that works on desktop and mobile
 - **Post Display** with cards showing title, category, source, and date
+- **Airtable Integration** - Posts managed via your company Airtable account
 
 ## Getting Started
 
@@ -33,66 +34,28 @@ npm run build
 npm start
 ```
 
-## Customizing the Data
+## Airtable Setup
+
+**IMPORTANT:** This site is connected to Airtable for managing posts. Follow these steps to set up:
+
+### Quick Setup
+
+1. **See detailed instructions**: Open `AIRTABLE_SETUP.md` for complete setup guide
+2. **Create Airtable base** with fields: Title, URL, Category, Source, Date
+3. **Get API credentials** from your company Airtable account
+4. **Copy `.env.local.example` to `.env.local`** and fill in your credentials
+5. **Restart dev server** to see posts from Airtable
 
 ### Adding Posts
 
-Edit the `posts` array in `/app/archive/page.tsx` (around line 20):
+Once Airtable is connected:
 
-```typescript
-const posts: Post[] = [
-  {
-    id: 1,
-    title: 'Your Post Title',
-    url: 'https://example.com',
-    category: 'Technology', // Must be one of: Technology, Design, AI, Culture, Engineering
-    source: 'Source Name',
-    date: '2024-01-15' // YYYY-MM-DD format
-  },
-  // Add more posts here...
-];
-```
+1. Open your Airtable base
+2. Click **"+ Add record"**
+3. Fill in: Title, URL, Category, Source, and Date
+4. Posts appear on the website automatically!
 
-### Connecting to a Backend/Database
-
-To use real data instead of the sample posts:
-
-1. **Replace the hardcoded posts array** with data fetching:
-
-```typescript
-'use client';
-
-import { useState, useEffect } from 'react';
-
-export default function Archive() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch from your API
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(data => {
-        setPosts(data);
-        setLoading(false);
-      });
-  }, []);
-
-  // Rest of your component...
-}
-```
-
-2. **Create an API route** at `/app/api/posts/route.ts`:
-
-```typescript
-import { NextResponse } from 'next/server';
-
-export async function GET() {
-  // Fetch from your database
-  const posts = await yourDatabase.posts.findMany();
-  return NextResponse.json(posts);
-}
-```
+## Customizing
 
 ### Changing Categories
 
