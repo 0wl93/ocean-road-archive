@@ -1,10 +1,10 @@
-# Little Plains Archive - Replica
+# Ocean Road Archive - Replica
 
-An exact functional replica of the Little Plains Archive inspiration collection website.
+An exact functional replica of the Ocean Road Archive inspiration collection website.
 
 ## Features
 
-- **Header** with Little Plains branding and post counter
+- **Header** with Ocean Road branding and post counter
 - **Collapsible Filter Sidebar** with category filters
 - **Category Filtering**: All, Technology, Design, AI, Culture, Engineering
 - **Sources Dropdown** for filtering by content source
@@ -22,7 +22,7 @@ The server is currently running at:
 To start the server again in the future:
 
 ```bash
-cd littleplains-archive
+cd ocean-road-archive
 npm run dev
 ```
 
@@ -133,7 +133,7 @@ Replace the placeholder logo by:
 ```typescript
 <Image
   src="/logo.png"
-  alt="Little Plains Logo"
+  alt="Ocean Road Logo"
   width={32}
   height={32}
 />
@@ -142,7 +142,7 @@ Replace the placeholder logo by:
 ## Project Structure
 
 ```
-littleplains-archive/
+ocean-road-archive/
 ├── app/
 │   ├── archive/
 │   │   └── page.tsx          # Main archive page with filters and posts

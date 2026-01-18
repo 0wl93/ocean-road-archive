@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Little Plains Archive",
+  title: "Ocean Road Archive",
   description: "A curated collection of inspiration links shared by the team. Ideas, references, and things worth remembering.",
 };
 

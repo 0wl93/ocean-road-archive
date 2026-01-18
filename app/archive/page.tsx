@@ -54,9 +54,9 @@ export default function Archive() {
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gray-900 rounded-sm flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-xs font-bold">LP</span>
+                <span className="text-white text-xs font-bold">OR</span>
               </div>
-              <h1 className="text-lg sm:text-xl font-semibold">Little Plains Archive</h1>
+              <h1 className="text-lg sm:text-xl font-semibold">Ocean Road Archive</h1>
             </div>
           </div>
           <div className="text-sm text-gray-600">
@@ -68,7 +68,7 @@ export default function Archive() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Title and Description */}
         <div className="mb-6 sm:mb-8">
-          <h2 className="text-xl sm:text-2xl font-bold mb-2">Inspiration from the Little Plains team</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-2">Inspiration from the Ocean Road team</h2>
           <p className="text-sm sm:text-base text-gray-600">
             A curated collection of inspiration links shared by the team. Ideas, references, and things worth remembering.
           </p>
